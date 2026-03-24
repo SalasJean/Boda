@@ -1,0 +1,87 @@
+/* ============================================================
+   HISTORIA.CSS — Sección "Nuestra Historia"
+   ============================================================ */
+
+#historia {
+  padding: 100px 5%;
+  background: var(--color-bg);
+}
+
+/* Grid de 3 columnas */
+.historia-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* La tarjeta del medio sube un poco para dar ritmo visual */
+.historia-card--mid {
+  margin-top: -40px;
+}
+
+/* Tarjeta individual */
+.historia-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Imagen */
+.historia-img-wrap {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+.historia-img-wrap img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.historia-card:hover .historia-img-wrap img {
+  transform: scale(1.04);
+}
+
+/* Cuerpo de texto */
+.historia-body {
+  padding: 0 4px;
+}
+
+.historia-tag {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+
+.historia-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-olive);
+  margin-bottom: 8px;
+}
+
+.historia-body p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .historia-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+  .historia-card--mid {
+    margin-top: 0;
+  }
+}

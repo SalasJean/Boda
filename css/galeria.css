@@ -1,0 +1,99 @@
+/* ============================================================
+   GALERIA.CSS — Sección "Galería de Momentos"
+   ============================================================ */
+
+#galeria {
+  padding: 100px 5%;
+  background: var(--color-bg);
+}
+
+.galeria-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.galeria-sub {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-top: -8px;
+}
+
+/* Grid de galería con áreas nombradas */
+.galeria-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 280px 280px 280px;
+  gap: 12px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Item base */
+.galeria-item {
+  overflow: hidden;
+  border-radius: var(--radius);
+  position: relative;
+}
+.galeria-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.galeria-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Item alto: ocupa 2 filas en la primera columna */
+.galeria-item--tall {
+  grid-row: span 2;
+}
+
+/* Item ancho: ocupa 2 columnas en la segunda fila */
+/* PONER: */
+.galeria-item--wide {
+  grid-column: 1 / -1;
+}
+
+/* Overlay hover */
+.galeria-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(92,90,62,0);
+  transition: background var(--transition);
+}
+.galeria-item:hover::after {
+  background: rgba(92,90,62,0.12);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .galeria-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .galeria-item--tall {
+    grid-row: auto;
+  }
+  .galeria-item--wide {
+    grid-column: span 2;
+  }
+  .galeria-item {
+    height: 200px;
+  }
+  .galeria-item--tall {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .galeria-grid {
+    grid-template-columns: 1fr;
+  }
+  .galeria-item--wide {
+    grid-column: 1 / -1;
+  }
+}

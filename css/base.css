@@ -1,0 +1,106 @@
+/* ============================================================
+   BASE.CSS — Variables globales, reset y tipografía base
+   ============================================================ */
+
+/* --- Variables de color y tipografía --- */
+:root {
+  --color-bg:        #f7f6ee;   /* crema suave */
+  --color-bg-alt:    #eeeadb;   /* crema más oscura para secciones alternas */
+  --color-olive:     #5c5a3e;   /* texto principal / olive oscuro */
+  --color-olive-mid: #7a7850;   /* olive medio */
+  --color-accent:    #6b5b4e;   /* marrón cálido (botones, tags) */
+  --color-accent2:   #8b7355;   /* accent más claro */
+  --color-text:      #3a3830;   /* texto cuerpo */
+  --color-text-muted:#857e6a;   /* texto secundario */
+  --color-white:     #ffffff;
+  --color-border:    rgba(92,90,62,0.15);
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Jost', sans-serif;
+
+  --radius: 4px;
+  --shadow: 0 8px 32px rgba(60,55,40,0.10);
+  --transition: 0.35s cubic-bezier(.4,0,.2,1);
+}
+
+/* --- Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul { list-style: none; }
+
+/* --- Títulos de sección reutilizables --- */
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-olive);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.01em;
+}
+.section-title.left {
+  text-align: left;
+}
+
+/* --- Botón outline reutilizable --- */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--color-olive);
+  color: var(--color-olive);
+  padding: 10px 22px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: background var(--transition), color var(--transition);
+}
+.btn-outline:hover {
+  background: var(--color-olive);
+  color: var(--color-white);
+}
+
+/* --- Animación de reveal al hacer scroll --- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+[data-reveal].visible {
+  opacity: 1;
+  transform: translateY(0);
+}

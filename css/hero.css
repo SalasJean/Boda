@@ -1,0 +1,330 @@
+/* ============================================================
+   HERO.CSS — Sección principal MEJORADA
+   Combina: foto real de fondo + monograma + countdown + música
+   ============================================================ */
+
+/* --- Contenedor principal --- */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: url('../images/hero.jpeg') center center / cover no-repeat;
+}
+
+/* --- Overlay con gradiente rosa-dorado suave encima de la foto --- */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* PONER esto en .hero-overlay (agrega el blur SOLO a la foto): */
+  background: linear-gradient(
+      135deg,
+      rgba(210, 150, 150, 0.45) 0%,
+      rgba(180, 130, 100, 0.35) 40%,
+      rgba(30, 28, 20, 0.45) 100%
+    );
+  backdrop-filter: blur(1px);
+}
+
+/* --- Corazones flotantes animados --- */
+.hero-hearts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.heart {
+  position: absolute;
+  opacity: 0;
+  animation: floatHeart 6s ease-in-out infinite;
+  color: rgba(210, 100, 120, 0.8);
+  font-size: 12px;
+}
+.heart:nth-child(1) { left: 12%;  top: 18%; animation-delay: 0s;   font-size: 10px; }
+.heart:nth-child(2) { left: 80%;  top: 10%; animation-delay: 1.2s; font-size: 14px; }
+.heart:nth-child(3) { left: 65%;  top: 38%; animation-delay: 2.4s; font-size: 9px;  }
+.heart:nth-child(4) { left: 22%;  top: 62%; animation-delay: 0.8s; font-size: 11px; }
+.heart:nth-child(5) { left: 88%;  top: 58%; animation-delay: 3.1s; font-size: 8px;  }
+.heart:nth-child(6) { left: 48%;  top: 82%; animation-delay: 1.8s; font-size: 13px; }
+
+@keyframes floatHeart {
+  0%   { opacity: 0;    transform: translateY(0)     scale(0.8); }
+  20%  { opacity: 0.85; }
+  80%  { opacity: 0.5;  }
+  100% { opacity: 0;    transform: translateY(-50px) scale(1.1); }
+}
+
+/* --- Contenido centrado --- */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: heroFadeIn 1.4s ease both;
+}
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Monograma circular --- */
+.hero-monogram {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(255, 235, 225, 0.22);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  animation: monogramPulse 4s ease-in-out infinite;
+}
+@keyframes monogramPulse {
+  0%, 100% { box-shadow: 0 4px 30px rgba(180,100,100,0.18); }
+  50%       { box-shadow: 0 4px 44px rgba(180,100,100,0.36); }
+}
+.hero-monogram span {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.95);
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+
+/* --- Pretítulo --- */
+.hero-pretitle {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+  margin-bottom: 10px;
+}
+
+/* --- Título principal --- */
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 9vw, 6.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-white);
+  line-height: 1.05;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 32px rgba(0,0,0,0.22);
+}
+
+/* --- Separador con corazón --- */
+.hero-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: rgba(255,255,255,0.5);
+}
+.hero-divider::before,
+.hero-divider::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: rgba(255,255,255,0.32);
+}
+.hero-divider span { font-size: 11px; color: rgba(220,130,140,0.9); }
+
+/* --- Subtítulo italic --- */
+.hero-subtitle {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 6px;
+}
+
+/* --- Fecha --- */
+.hero-date {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.68);
+  margin-bottom: 30px;
+}
+
+/* --- Countdown timer --- */
+.hero-countdown {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.countdown-box {
+  background: rgba(255, 245, 240, 0.16);
+  border: 1px solid rgba(255,255,255,0.26);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 14px 20px;
+  min-width: 74px;
+  text-align: center;
+  transition: background var(--transition);
+}
+.countdown-box:hover {
+  background: rgba(255, 245, 240, 0.24);
+}
+.countdown-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.countdown-label {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.58);
+}
+
+/* --- Botón escuchar canción --- */
+.btn-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(110, 70, 60, 0.72);
+  border: 1px solid rgba(255,255,255,0.22);
+  backdrop-filter: blur(8px);
+  color: var(--color-white);
+  padding: 14px 30px;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.btn-hero:hover {
+  background: rgba(140, 90, 75, 0.88);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+/* --- Scroll hint --- */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
+}
+.hero-scroll-hint span {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.hero-scroll-arrow {
+  color: rgba(255,255,255,0.5);
+  animation: bounceDown 2s ease-in-out infinite;
+}
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(7px); }
+}
+
+/* --- Reproductor de audio flotante (centrado abajo) --- */
+.hero-audio-player {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.94);
+  border: 1px solid rgba(180,130,100,0.18);
+  border-radius: 50px;
+  padding: 10px 18px 10px 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.11);
+  backdrop-filter: blur(12px);
+  transition: transform var(--transition), opacity var(--transition);
+}
+.hero-audio-player.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(10px);
+}
+
+/* Botones de control de audio */
+.audio-ctrl {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  transition: background var(--transition);
+}
+.audio-ctrl:hover {
+  background: rgba(180,100,80,0.08);
+}
+
+/* Barra de progreso */
+.audio-progress {
+  width: 72px;
+  height: 3px;
+  background: #e0d8cc;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.audio-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #c8956c, #9b6b5a);
+  border-radius: 2px;
+  transition: width 0.5s linear;
+}
+
+/* Título de la canción */
+.audio-title {
+  font-size: 0.68rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  font-family: var(--font-body);
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  .hero-monogram      { width: 85px; height: 85px; }
+  .hero-monogram span { font-size: 1.2rem; }
+  .countdown-box      { min-width: 58px; padding: 10px 12px; }
+  .countdown-num      { font-size: 1.5rem; }
+  .hero-divider::before,
+  .hero-divider::after { width: 36px; }
+  .hero-audio-player  { bottom: 16px; right: 16px; padding: 8px 14px 8px 10px; }
+}
